@@ -1,4 +1,4 @@
-# React App to Generate Crossword Puzzles
+# React App to Generate Word search
 This is a React App designed to generate crossword puzzles with HTML, CSS, JavaScript, and React. It provides an intuitive user experience and is highly customizable. It allows users to define the size of their puzzles, allowing them to set the difficulty level according to their own preferences. The generated puzzles can then be printed or shared with friends to play together. 
 
 ## Getting Started
@@ -11,6 +11,13 @@ The React App has a number of customization options, which you'll find in the si
 We welcome all contributions to this project! If you have an idea for a new feature or would like to report a bug, please open an issue on our GitHub repository. 
 
 Happy Puzzling!
+
+### Packages
+
+#### React to print
+
+This is an npm package that aims to give end users the ability to print out the contents of a component by popping up a print window with CSS styles copied over as well.
+link here: <https://www.npmjs.com/package/react-to-print>
 
 ### Available Scripts
 
