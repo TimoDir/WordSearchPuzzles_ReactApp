@@ -1,18 +1,18 @@
 # React App to Generate Word search
-This is a React App designed to generate crossword puzzles with HTML, CSS, JavaScript, and React. It provides an intuitive user experience and is highly customizable. It allows users to define the size of their puzzles, allowing them to set the difficulty level according to their own preferences. The generated puzzles can then be printed or shared with friends to play together. 
+This is a React App designed to generate search word puzzles with HTML, CSS, JavaScript, and React. It provides an intuitive user experience and is highly customizable. It allows users to define the size of their puzzles, allowing them to chose the word to be found. The generated puzzles can then be printed or shared with friends to play together.
 
 ## Getting Started
 To get started, you'll need to install the necessary dependencies for the React App. We recommend using npm to do this. Once the dependencies are installed, you can launch the React App by running `npm start` in your project directory.
 
 ## Usage
-The React App has a number of customization options, which you'll find in the sidebar menu. You can set the size of the crossword puzzle, write customize set of word you want to hide inside. There is also a preview section that shows how the finished result will look. Once you're satisfied with your settings, you can save your crossword puzzle by clicking the 'Save' button. You can then share the puzzle with friends or print it out for a paper-based experience.
+The React App has a number of customization options, which you'll find in the sidebar menu. You can set the size of the search word puzzle, write customize set of word you want to hide inside. There is also a preview section that shows how the finished result will look. Once you're satisfied with your settings, you can share the puzzle with friends or print it out for a paper-based experience.
 
 ## Contributing
-We welcome all contributions to this project! If you have an idea for a new feature or would like to report a bug, please open an issue on our GitHub repository. 
+I welcome all contributions to this project! If you have an idea for a new feature or would like to report a bug, please open an issue on our GitHub repository.
 
 Happy Puzzling!
 
-### Packages
+## Packages
 
 #### React to print
 
