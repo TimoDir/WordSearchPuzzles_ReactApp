@@ -35,6 +35,6 @@ describe("Test all the function that compose the puzzle function", () =>{
                 expect(word).toHaveProperty('direction');
                 expect(word).toHaveProperty('position');
             });
-        })
-    })
+        });
+    });
 });
