@@ -13,11 +13,7 @@ export function gridCreator (puzzleSize){
     return gameGrid;
 };
 
-
-const gameGrid6 = gridCreator(5);
-const wordList = ['cat', 'dog', 'tall']
-
-export function wordPlacement(wordList, gameGrid){
+export function wordPlacement(wordList, size){
     const direction = ['vertical', 'horizontal', 'inverseVertical', 'inverseHorizontal', 'diagonalUpRigth', 'diagonalUpLeft', 'diagonalDownRigth', 'diagonalDownLeft'];
     const wordInfo = [];
     for (let i = 0; i < wordList.length; i++) {
@@ -35,8 +31,8 @@ export function wordPlacement(wordList, gameGrid){
         wInfo.direction = direction[Math.floor(Math.random()* direction.length)];
         switch (wInfo.direction){
             case 'vertical':
-                line = Math.floor(Math.random()*(gameGrid.length-1));
-                column = randomMinMax(0, (gameGrid.length - wInfo.word.length));
+                line = Math.floor(Math.random()*(size-1));
+                column = randomMinMax(0, (size - wInfo.word.length));
                 for (let i = 0; i < wInfo.word.length; i++) {
                     wInfo.position[i] = {
                         line: line,
@@ -45,8 +41,8 @@ export function wordPlacement(wordList, gameGrid){
                 };                
                 break;
             case 'horizontal' :
-                line = randomMinMax(0, (gameGrid.length - wInfo.word.length));
-                column = Math.floor(Math.random()*(gameGrid.length-1));
+                line = randomMinMax(0, (size - wInfo.word.length));
+                column = Math.floor(Math.random()*(size-1));
                 for (let i = 0; i < wInfo.word.length; i++) {
                     wInfo.position[i] = {
                         line: line + i,
@@ -55,8 +51,8 @@ export function wordPlacement(wordList, gameGrid){
                 };                
                 break;
             case 'inverseVertical' :
-                line = Math.floor(Math.random()*(gameGrid.length-1));
-                column = randomMinMax((gameGrid.length - wInfo.word.length), (gameGrid.length -1));
+                line = Math.floor(Math.random()*(size-1));
+                column = randomMinMax((wInfo.word.length - 1), (size-1));
                 for (let i = 0; i < wInfo.word.length; i++) {
                     wInfo.position[i] = {
                         line: line,
@@ -65,8 +61,8 @@ export function wordPlacement(wordList, gameGrid){
                 };                
                 break;
             case 'inverseHorizontal' :
-                line = randomMinMax((gameGrid.length - wInfo.word.length), gameGrid.length -1);
-                column = Math.floor(Math.random()*(gameGrid.length-1));
+                line = randomMinMax((wInfo.word.length - 1), (size-1));
+                column = Math.floor(Math.random()*(size-1));
                 for (let i = 0; i < wInfo.word.length; i++) {
                     wInfo.position[i] = {
                         line: line -i,
@@ -75,8 +71,8 @@ export function wordPlacement(wordList, gameGrid){
                 };                
                 break;
             case  'diagonalDownRigth':
-                line = randomMinMax(0, (gameGrid.length - wInfo.word.length));
-                column = randomMinMax(0, (gameGrid.length - wInfo.word.length));
+                line = randomMinMax(0, (size - wInfo.word.length));
+                column = randomMinMax(0, (size - wInfo.word.length));
                 for (let i = 0; i < wInfo.word.length; i++) {
                     wInfo.position[i] = {
                         line: line +i,
@@ -85,8 +81,8 @@ export function wordPlacement(wordList, gameGrid){
                 };                
                 break;
             case 'diagonalDownLeft' :
-                line = randomMinMax(0, (gameGrid.length - wInfo.word.length));
-                column = randomMinMax((gameGrid.length - wInfo.word.length), (gameGrid.length-1));
+                line = randomMinMax(0, (size - wInfo.word.length));
+                column = randomMinMax((wInfo.word.length - 1), (size-1));
                 for (let i = 0; i < wInfo.word.length; i++) {
                     wInfo.position[i] = {
                         line: line +i,
@@ -95,8 +91,8 @@ export function wordPlacement(wordList, gameGrid){
                 };                
                 break;
             case 'diagonalUpRigth' :
-                line = randomMinMax((gameGrid.length - wInfo.word.length), (gameGrid.length -1));
-                column = randomMinMax(0, (gameGrid.length - wInfo.word.length));
+                line = randomMinMax((wInfo.word.length - 1), (size-1));
+                column = randomMinMax(0, (size - wInfo.word.length));
                 for (let i = 0; i < wInfo.word.length; i++) {
                     wInfo.position[i] = {
                         line: line -i,
@@ -105,8 +101,8 @@ export function wordPlacement(wordList, gameGrid){
                 };                
                 break;
             case 'diagonalUpLeft' :
-                line = randomMinMax((gameGrid.length - wInfo.word.length), (gameGrid.length - 1));
-                column = randomMinMax((gameGrid.length - wInfo.word.length), (gameGrid.length - 1));
+                line = randomMinMax((wInfo.word.length - 1), (size-1));
+                column = randomMinMax((wInfo.word.length - 1), (size-1));
                 for (let i = 0; i < wInfo.word.length; i++) {
                     wInfo.position[i] = {
                         line: line -i,
@@ -163,5 +159,25 @@ export function wordPlacement(wordList, gameGrid){
 };
 
 
+const size = 5;
+const wordList = ['cat', 'dog', 'tall'];
 
-wordPlacement(wordList, gameGrid6);
+
+export function searchWordGeneration(wordList, size){
+    const gridWithWord = gridCreator(size);
+    const wordInfo = wordPlacement(wordList, size)
+
+    for (let i = 0; i < wordInfo.length; i++) {
+        console.log(wordInfo[i].word)
+        console.log(wordInfo[i].direction)
+        console.log(wordInfo[i].position)
+        for (let j = 0; j < wordInfo[i].position.length; j++) {
+            gridWithWord[wordInfo[i].position[j].line][wordInfo[i].position[j].column] = wordInfo[i].word[j];
+        }
+    }
+
+    console.log(gridWithWord);
+    return gridWithWord;
+}
+
+searchWordGeneration(wordList, size);
