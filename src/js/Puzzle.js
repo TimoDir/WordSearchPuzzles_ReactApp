@@ -18,7 +18,7 @@ export function wordPlacement(wordList, size){
     const wordInfo = [];
     for (let i = 0; i < wordList.length; i++) {
         wordInfo[i] = {
-            word: wordList[i].toUpperCase(), 
+            word: wordList[i].normalize('NFD').replace(/[^a-zA-Z]/g, '').replace(/[\u0300-\u036f]/g, '').toUpperCase(), 
             direction : '',
             position: [],
         };

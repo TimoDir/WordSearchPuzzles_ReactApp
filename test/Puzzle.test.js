@@ -1,11 +1,13 @@
 import { describe, expect, test } from '@jest/globals';
-import { gridCreator, wordPlacement, searchWordGeneration } from './Puzzle';
+import { gridCreator, wordPlacement, searchWordGeneration } from '../src/js/Puzzle';
 
 describe("Test all the function that compose the searchWordGeneration function", () =>{
     describe("gridCreator function", () =>{
+        
         const size = 6;
         const result = gridCreator(size);
         const character = 'ACBDEFGHIJKLMNOPQRSTUVWXYZ';
+        
         test("With the size parametre the function should give us an array of array. they length must match the size parameter.", function(){
             expect(result).toHaveLength(size);
             result.forEach(lineArray =>{
@@ -20,13 +22,16 @@ describe("Test all the function that compose the searchWordGeneration function",
             });
         });
     });
+    
     describe('wordPlacement function', () =>{
+        
         const wordList = ['cat', 'dog', 'tall'];
         const size = 5;
         const wordUper = ['CAT', 'DOG', 'TALL'];
         const direction = ['vertical', 'horizontal', 'inverseVertical', 'inverseHorizontal', 'diagonalUpRigth', 'diagonalUpLeft', 'diagonalDownRigth', 'diagonalDownLeft'];
         const posPossibility = [0, 1, 2, 3, 4];
-        const result = wordPlacement(wordList, size)
+        const result = wordPlacement(wordList, size);
+
         test('It should return an array of object for each word in the wordList parameter:', () =>{
             expect(result).toHaveLength(wordList.length);
         });
@@ -58,11 +63,14 @@ describe("Test all the function that compose the searchWordGeneration function",
             });
         });
     });
+    
     describe("searchWordGeneration function", () =>{
+        
         const wordList = ['cat', 'dog', 'tall'];
         const size = 5;
         const result = searchWordGeneration(wordList, size);
         const character = 'ACBDEFGHIJKLMNOPQRSTUVWXYZ';
+        
         test("With the size parametre the function should give us an array of array. they length must match the size parameter.", function(){
             expect(result).toHaveLength(size);
             result.forEach(lineArray =>{
