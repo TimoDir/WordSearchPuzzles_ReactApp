@@ -1,6 +1,8 @@
 import './App.css';
+import { WordsForm } from '../features/wordsForm/WordsForm';
+import { SearchWordPuzzle } from '../features/searchWordPuzzle/SearchWordPuzzle';
 import { useSelector, useDispatch } from 'react-redux';
-import { setTitle , setSize, clearWord, addWord, searchWordGenerate  } from './store';
+import { action } from './store';
 
 function App(props) {
   const selectSize = useSelector(state => state.size);
@@ -9,32 +11,22 @@ function App(props) {
   const dispatch = useDispatch();
 
   const handleChange = event => {
-    console.log("Size : " + event.target.value);
     // parseInt will transform the string we recieved by an integer value
-    dispatch(setSize(parseInt(event.target.value)));
-  }
+    dispatch(action.setSize(parseInt(event.target.value)));
+  };
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = (event) => {
     // the prevent Default will prevent all my page to refresh when submit the form (just the form will refreshe)
     event.preventDefault();
-    // we set the title
-    console.log("Title : " + event.target.title.value)
-    dispatch(setTitle(event.target.title.value))
-    //the size is already set by the onChange function
-    console.log("Size : " + event.target.size.value)
-
-    dispatch(clearWord())
-
-    console.log("Word list:")
-    await event.target.word.forEach(word => {
+    dispatch(action.setTitle(event.target.title.value))
+    dispatch(action.clearWord())
+    event.target.word.forEach(word => {
       if(word.value){
-        console.log(word.value)
-        dispatch(addWord(word.value))
+        dispatch(action.addWord(word.value))
       }
     });
-
-    dispatch(searchWordGenerate(selectWordList, selectSize));
-  }
+    dispatch(action.searchWordGenerate(selectWordList, selectSize));
+  };
 
   return (
     <div className="App">
@@ -72,19 +64,8 @@ function App(props) {
           <option value="24" label='24'></option>
         </datalist>
         
-        <h3>3- Words (required)</h3>
-        <p>Choose the number of words you want to hide inside the puzzle and write them: 
-          <br/>- For your puzzle size {selectSize}*{selectSize} we recommande beetween 10 - 30 words. {/*interactivity we will be add with state*/}
-          <br/>- Your words must be {selectSize} letters or fewer. Any special characters, accents, or spaces will be removed.
-        </p>
-        <label for="word">Words</label>
-        <br/><input type="text" id="word" required/><input type="text" id="word" required/><input type="text" id="word" required/><input type="text" id="word" required/><input type="text" id="word" required/> - 5 words 
-        <br/><input type="text" id="word" required/><input type="text" id="word" required/><input type="text" id="word" required/><input type="text" id="word" required/><input type="text" id="word" required/> - 10 words (required)
-        <br/><input type="text" id="word" /><input type="text" id="word" /><input type="text" id="word" /><input type="text" id="word" /><input type="text" id="word" /> - 15 words
-        <br/><input type="text" id="word" /><input type="text" id="word" /><input type="text" id="word" /><input type="text" id="word" /><input type="text" id="word" /> - 20 words
-        <br/><input type="text" id="word" /><input type="text" id="word" /><input type="text" id="word" /><input type="text" id="word" /><input type="text" id="word" /> - 25 words
-        <br/><input type="text" id="word" /><input type="text" id="word" /><input type="text" id="word" /><input type="text" id="word" /><input type="text" id="word" /> - 30 words
-        <br/>
+        <WordsForm size={selectSize} />
+        
         <br/>
         <p>When you're satisfied with your list of words, you can generate your puzzle by pressing this button: <input type="submit" value="Generate" />
         <br/>If you want a different layout, click on the Generate button again.
@@ -92,9 +73,7 @@ function App(props) {
       </form>
       
       {/* Puzzle */}
-      <div className='Puzzle'>
-
-      </div>
+      <SearchWordPuzzle searchWord={selectSearchWord} />
     </div>
   );
 }
