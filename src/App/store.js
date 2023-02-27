@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { searchWordGeneration } from "../js/Puzzle";
+import { puzzleGeneration, wordPlacement } from "../js/Puzzle";
 
 // Initial State
 ////////////////////////////////////////
@@ -7,8 +7,10 @@ import { searchWordGeneration } from "../js/Puzzle";
 const initialState = {
     title:'',
     size: 16,
-    wordList: [],
-    searchWord: [],
+    searchWord: {
+        wordInfo: [],
+        puzzle: [],
+    },
 }
 
 // Action Creators
@@ -22,25 +24,19 @@ const setSize = (size) =>{
     return {type:'setSize', payload: size }
 };
 
-const clearWord = () =>{
-    return {type: 'clearWord'};
-}
-
-const addWord = (word) =>{
-    //  replace methode will remove all the spécial caractère the accent and the space from the word.
-    return {type:'addWord', payload: word.normalize('NFD').replace(/[^a-zA-Z]/g, '').replace(/[\u0300-\u036f]/g, '').toUpperCase() };
+const createWordInfo = (wordList, size) =>{
+    return {type:'createWordInfo', payload: wordPlacement(wordList, size)}
 };
 
-const searchWordGenerate = (wordList, size) =>{
-    return {type:'searchWordGenerate', payload: searchWordGeneration(wordList, size) };
+const puzzleGenerate = (wordInfo, size) =>{
+    return {type:'puzzleGenerate', payload: puzzleGeneration(wordInfo, size) };
 };
 
 export const action = {
     setTitle: setTitle,
     setSize: setSize,
-    clearWord: clearWord,
-    addWord: addWord,
-    searchWordGenerate: searchWordGenerate,
+    createWordInfo: createWordInfo,
+    puzzleGenerate: puzzleGenerate,
 }
 
 // Reducer
@@ -58,24 +54,27 @@ const searchWordReducer = (state = initialState, action) =>{
                 ...state,
                 size: action.payload,
             };
-        case 'clearWord':
+        case 'createWordInfo':
             return {
                 ...state,
-                wordList: []
-            }
-        case 'addWord':
-            return {
-                ...state,
-                wordList:[...state.wordList, action.payload]
+                searchWord:{
+                    ...state.searchWord,
+                    wordInfo: action.payload
+                } 
             };
-        case 'searchWordGenerate':
+        case 'puzzleGenerate':
             return {
                 ...state,
-                searchWord: action.payload
+                searchWord:{
+                    ...state.searchWord,
+                    puzzle: action.payload
+                } 
             };
         default:
             return state;
     };
 };
 
-export const store = configureStore({reducer: searchWordReducer});
+export const store = configureStore({
+    reducer: searchWordReducer,
+});

@@ -122,6 +122,7 @@ export function wordPlacement(wordList, size){
 
     // Looking if conflict inside the positionnement and the letter
     let conflict = true;
+    let timeBegin = Date.now();
 
     while(conflict){
         // set at the end conflict true or false
@@ -151,6 +152,14 @@ export function wordPlacement(wordList, size){
                     } 
                 };};  
             };};
+        
+        let timeEnd = Date.now();
+        let timeRunScd = Math.round(((timeEnd - timeBegin)/1000)%60);
+        if(timeRunScd > 5){
+            wordInfo.filter(word => word !== wordInfo[Math.floor(Math.random()*wordInfo.length)]);
+            console.log(wordInfo);
+            timeBegin = Date.now();
+        };
 
         conflict = stillConflict;
     }
@@ -161,11 +170,11 @@ export function wordPlacement(wordList, size){
 
 const size = 5;
 const wordList = ['cat', 'dog', 'tall'];
+const wordInfo = wordPlacement(wordList, size)
 
 
-export function searchWordGeneration(wordList, size){
+export function puzzleGeneration(wordInfo, size){
     const gridWithWord = gridCreator(size);
-    const wordInfo = wordPlacement(wordList, size)
 
     for (let i = 0; i < wordInfo.length; i++) {
         console.log(wordInfo[i].word)
@@ -180,4 +189,4 @@ export function searchWordGeneration(wordList, size){
     return gridWithWord;
 }
 
-searchWordGeneration(wordList, size);
+puzzleGeneration(wordInfo, size);

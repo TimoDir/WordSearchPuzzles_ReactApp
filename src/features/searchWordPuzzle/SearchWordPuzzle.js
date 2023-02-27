@@ -2,7 +2,7 @@ export function SearchWordPuzzle({searchWord}){
     return(
         <>
         <table>
-            {searchWord.map(line =>{
+            {searchWord.puzzle.map(line =>{
                 return (
                 <tr>
                     {line.map(letter =>{

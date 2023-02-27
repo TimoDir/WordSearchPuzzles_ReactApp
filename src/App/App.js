@@ -1,12 +1,14 @@
 import './App.css';
+import * as React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { WordsForm } from '../features/wordsForm/WordsForm';
 import { SearchWordPuzzle } from '../features/searchWordPuzzle/SearchWordPuzzle';
-import { useSelector, useDispatch } from 'react-redux';
 import { action } from './store';
+
 
 function App(props) {
   const selectSize = useSelector(state => state.size);
-  const selectWordList = useSelector(state => state.wordList)
+  const selectWordInfo = useSelector(state => state.searchWord.wordInfo)
   const selectSearchWord = useSelector(state => state.searchWord);
   const dispatch = useDispatch();
 
@@ -15,18 +17,28 @@ function App(props) {
     dispatch(action.setSize(parseInt(event.target.value)));
   };
 
+
   const handleSubmit = (event) => {
     // the prevent Default will prevent all my page to refresh when submit the form (just the form will refreshe)
     event.preventDefault();
     dispatch(action.setTitle(event.target.title.value))
-    dispatch(action.clearWord())
+    const wordList = []
     event.target.word.forEach(word => {
       if(word.value){
-        dispatch(action.addWord(word.value))
-      }
+          wordList.push(word.value.normalize('NFD').replace(/[^a-zA-Z]/g, '').replace(/[\u0300-\u036f]/g, '').toUpperCase())
+        }
     });
-    dispatch(action.searchWordGenerate(selectWordList, selectSize));
+    dispatch(action.createWordInfo(wordList, selectSize));
   };
+
+  const handlePuzzleGenerate = () =>{
+    dispatch(action.puzzleGenerate(selectWordInfo, selectSize));
+  };
+
+  React.useEffect(()=>{
+    handlePuzzleGenerate();
+  }, [selectWordInfo]);
+
 
   return (
     <div className="App">
