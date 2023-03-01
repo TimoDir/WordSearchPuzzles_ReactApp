@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { WordsForm } from '../features/wordsForm/WordsForm';
 import { SearchWordPuzzle } from '../features/searchWordPuzzle/SearchWordPuzzle';
 import { action } from './store';
+import SearchWordLogo from '../img/SearchWordLogo.png'
 
 
 function App(props) {
@@ -44,7 +45,7 @@ function App(props) {
     <div className="App">
       {/* Header + instruction */}
       <header>
-        <h1>Search Words Generator</h1>
+        <img src={SearchWordLogo} alt='SearchWords Generator'/>
       </header>
       <h2>Instruction</h2>
       <p>Follow the various steps to customize your word search puzzle. Some of the steps are optional while others are required in order to generate the puzzle. 

@@ -2,8 +2,6 @@ export function WordsForm({ size }){
     // helper function who will set the number of input avaiable in comparaison with the size of our puzzle.
     const requiredWord = (size) =>{
         // We manage the required input and the unrequired one.
-        const requiredInput = <input type="text" id="word" minLength={3} maxLength={size} required/>;
-        const unRequiredInput = <input type="text" id="word" minLength={3} maxLength={size}/>;
         let requiredNum;
         const finalInput = [];
 
@@ -14,7 +12,7 @@ export function WordsForm({ size }){
                 if(i === 1 || (i-1)%5 === 0 ){
                     finalInput.push(<br/>)
                 };
-                finalInput.push(requiredInput);
+                finalInput.push(<input key={'Req'+i} type="text" id="word" minLength={3} maxLength={size} required/>);
                 if(i%5 === 0 && i !== 0){
                     finalInput.push(` - ${i} words`)
                 };
@@ -24,7 +22,7 @@ export function WordsForm({ size }){
                 if(i === 1 || (i-1)%5 === 0){
                     finalInput.push(<br/>)
                 };
-                finalInput.push(unRequiredInput);
+                finalInput.push(<input key={'UnReq'+(i+requiredNum)} type="text" id="word" minLength={3} maxLength={size}/>);
                 if(i%5 === 0){
                     finalInput.push(` - ${requiredNum+i} words`)
                 };
