@@ -9,27 +9,27 @@ export function WordsForm({ size }){
         const finalInputConstructor = (requiredNum) =>{
             let unRequiredNum = size - (requiredNum + 1);
             for (let i = 1; i <= requiredNum; i++) {
-                if(i === 1 || (i-1)%5 === 0 ){
+                if((i-1)%5 === 0 ){
                     finalInput.push(<br/>)
                 };
                 finalInput.push(<input key={'Req'+i} type="text" id="word" minLength={3} maxLength={size} required/>);
-                if(i%5 === 0 && i !== 0){
+                /*if(i%5 === 0 && i !== 0){
                     finalInput.push(` - ${i} words`)
-                };
+                };*/
             };
-            finalInput.push(' (required)')
+            finalInput.push('*')
             for (let i = 1; i <= unRequiredNum; i++) {
                 if(i === 1 || (i-1)%5 === 0){
                     finalInput.push(<br/>)
                 };
                 finalInput.push(<input key={'UnReq'+(i+requiredNum)} type="text" id="word" minLength={3} maxLength={size}/>);
-                if(i%5 === 0){
+                /*if(i%5 === 0){
                     finalInput.push(` - ${requiredNum+i} words`)
-                };
+                };*/
             };
-            if((size-1)%5 !== 0){
+            /*if((size-1)%5 !== 0){
                 finalInput.push(` - ${size-1} words`)
-            }
+            };*/
         };
         // this switch logic will determine the required input needed and call our helper function.
         switch(size){
@@ -56,10 +56,10 @@ export function WordsForm({ size }){
             case 8:
             case 12:
             case 16:
-                return (`5 - ${size-1} words.`);
+                return (`5* - ${size-1} words.`);
             case 20:
             case 24:
-                return (`10 - ${size-1} words.`);
+                return (`10* - ${size-1} words.`);
             default:
                 throw new Error("something went wrong with the state of size.");
         }
@@ -67,13 +67,12 @@ export function WordsForm({ size }){
 
     return (
         <>
-        <h3>3- Words (required)</h3>
-        <p>Choose the number of words you want to hide inside the puzzle and write them: 
-          <br/>- For your puzzle size {size}*{size} we recommande beetween {remcomandation(size)}
-          <br/>- Your words must be {size} letters or fewer. Any special characters, accents, or spaces will be removed.
-        </p>
         <div className="inputWords">
-            <label for="word">Words</label>
+            <label for="word"><h3>3- Words*</h3></label>
+            <p>
+                <br/>For your puzzle size {size}*{size} we recommande beetween {remcomandation(size)}
+                <br/>Your words must be {size} letters or fewer. Any special characters or spaces will be removed.
+            </p>
             {requiredWord(size)}
         </div>
         <br/>

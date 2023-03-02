@@ -8,6 +8,7 @@ import SearchWordLogo from '../img/SearchWordLogo.png'
 
 
 function App(props) {
+  const selectTitle = useSelector(state => state.title);
   const selectSize = useSelector(state => state.size);
   const selectWordInfo = useSelector(state => state.searchWord.wordInfo)
   const selectSearchWord = useSelector(state => state.searchWord);
@@ -46,47 +47,50 @@ function App(props) {
       {/* Header + instruction */}
       <header>
         <img src={SearchWordLogo} alt='SearchWords Generator'/>
+        <div className='HeaderLine'></div>
       </header>
-      <h2>Instruction</h2>
-      <p>Follow the various steps to customize your word search puzzle. Some of the steps are optional while others are required in order to generate the puzzle. 
-        <br/>When you're finished, you can generate your puzzle. If you're not satisfied with the layout, 
-        you can regenerate the puzzle and once you're happy with it, you can print the result and enjoy a paper version of your puzzle!
-        <br/><br/>
-        Happy Puzzling!
-      </p>
+      <div className='Formular'>
+        <div className='Instruction'>
+          <h4>Instructions :</h4>
+          <ul>
+            <li>All required information is noted by an <span>*</span></li>
+            <li>Our recommended size is a 16 by 16 grid.</li>
+            <li>When you add words, spécial character and space will be remove after generation of the puzzle.</li>
+            <li>The length of your word depend of the size of your puzzle.</li>
+            <li>When you complet the formular clic the generate button to create your puzzle.</li>
+            <li>You can regenerate the puzzle by clicking to generate button again.</li>
+            <li>You can Print your search word puzzle by clicking the print button.</li>
+          </ul>
+          <p>Happy Puzzling!</p>
+        </div>
 
-      {/* Customization formular */}
-      <h2>customizator:</h2>
-      <form onSubmit={handleSubmit}>
+        {/* Customization formular */}
+        <form onSubmit={handleSubmit}>
 
-        <h3>1- Title (optional)</h3>
-        <p>Enter the title you would like for your puzzle. It can be a theme such as for example, Disney movies, Vegetables...</p>
-        <label for="title">Title</label>
-        <br/><input type="text" id="title" />
+          <label for="title"><h3>1- Title</h3></label>
+          <input type="text" id="title" />
+          
+          <label for="size"><h3>2- Size</h3></label>
+          <p>Size : {selectSize}*{selectSize}</p>
+          <input type="range"  id="size" min="8" max="24" step="4" list='length' onChange={handleChange}/>
+          <datalist id='length'>
+            <option value="8" label='8'></option>
+            <option value="16" label='16'></option>
+            <option value="24" label='24'></option>
+          </datalist>
+
+          <WordsForm size={selectSize} />
         
-        <h3>2- Size (optional)</h3>
-        <p>If you like to change the size of the grid, by default we had a 16 by 16 grid.
-          <br/>We recommend that you keep the default size, but if you decide to go smaller, 
-          please note that your words must be shorter than the minimum length of your grid.
-        </p>
-        <label for="size">Size : {selectSize}*{selectSize} </label>
-        <br/><input type="range"  id="size" min="8" max="24" step="4" list='length' onChange={handleChange}/>
-        <datalist id='length'>
-          <option value="8" label='8'></option>
-          <option value="16" label='16'></option>
-          <option value="24" label='24'></option>
-        </datalist>
-        
-        <WordsForm size={selectSize} />
-        
-        <br/>
-        <p>When you're satisfied with your list of words, you can generate your puzzle by pressing this button: <input type="submit" value="Generate" />
-        <br/>If you want a different layout, click on the Generate button again.
-        </p>
-      </form>
+          <br/>
+          <input type="submit" value="Generate" />
+          <p>
+            If you want a different layout, click on the Generate button again.
+          </p>
+        </form>
+      </div>
       
       {/* Puzzle */}
-      <SearchWordPuzzle searchWord={selectSearchWord} />
+      <SearchWordPuzzle searchWord={selectSearchWord} title={selectTitle} />
     </div>
   );
 }
