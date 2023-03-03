@@ -93,7 +93,7 @@ form input{
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .Puzzle h1{
@@ -108,7 +108,7 @@ form input{
 .Puzzle li{
     justify-content: flex-start;
     list-style: none;
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 10px;
     height: fit-content;
 }
@@ -119,8 +119,19 @@ table{
 }
 
 .Puzzle td{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border: 1px solid gray;
     
+}
+
+.PrintButton{
+    display: block;
+    width: 70%;
+    height: 30px;
+    margin: 70px auto;
+    font-size: 18px;
+    font-family: 'Sniglet', cursive;
+    color: rgb(65, 70, 99);
+    border-radius: 5px;
 }

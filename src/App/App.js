@@ -1,6 +1,7 @@
 import './App.css';
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {useReactToPrint} from 'react-to-print';
 import { WordsForm } from '../features/wordsForm/WordsForm';
 import { SearchWordPuzzle } from '../features/searchWordPuzzle/SearchWordPuzzle';
 import { action } from './store';
@@ -8,6 +9,9 @@ import SearchWordLogo from '../img/SearchWordLogo.png'
 
 
 function App(props) {
+  // State querry & handeling
+  ////////////////////////////////////////
+
   const selectTitle = useSelector(state => state.title);
   const selectSize = useSelector(state => state.size);
   const selectWordInfo = useSelector(state => state.searchWord.wordInfo)
@@ -18,7 +22,6 @@ function App(props) {
     // parseInt will transform the string we recieved by an integer value
     dispatch(action.setSize(parseInt(event.target.value)));
   };
-
 
   const handleSubmit = (event) => {
     // the prevent Default will prevent all my page to refresh when submit the form (just the form will refreshe)
@@ -41,6 +44,13 @@ function App(props) {
     handlePuzzleGenerate();
   }, [selectWordInfo]);
 
+  // Handeling the printing component SearchWordPuzzle with React-to-Print
+  ////////////////////////////////////////
+
+  const componentRef = React.useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   return (
     <div className="App">
@@ -90,7 +100,11 @@ function App(props) {
       </div>
       
       {/* Puzzle */}
-      <SearchWordPuzzle searchWord={selectSearchWord} title={selectTitle} />
+      <SearchWordPuzzle ref={componentRef} searchWord={selectSearchWord} title={selectTitle} size={selectSize}/>
+      {selectSearchWord.wordInfo.length > 1 &&
+      <button className='PrintButton' onClick={handlePrint}>Print</button>
+      }
+      
     </div>
   );
 }
