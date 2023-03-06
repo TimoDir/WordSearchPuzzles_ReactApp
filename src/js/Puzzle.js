@@ -122,9 +122,18 @@ export function wordPlacement(wordList, size){
 
     // Looking if conflict inside the positionnement and the letter
     let conflict = true;
-    let timeBegin = Date.now();
+    let counter = 0;
 
     while(conflict){
+        if(counter > (size * size * 500)){
+            console.log('Placement to long remove one word of the list')
+            wordInfo.splice(Math.floor(Math.random()*wordInfo.length), 1);
+            for (let i = 0; i < wordInfo.length; i++) {
+                placement(wordInfo[i])
+            };
+            counter = 0;
+        }
+
         // set at the end conflict true or false
         let stillConflict = false;
 
@@ -152,15 +161,7 @@ export function wordPlacement(wordList, size){
                     } 
                 };};  
             };};
-        
-        let timeEnd = Date.now();
-        let timeRunScd = Math.round(((timeEnd - timeBegin)/1000)%60);
-        if(timeRunScd > 5){
-            wordInfo.filter(word => word !== wordInfo[Math.floor(Math.random()*wordInfo.length)]);
-            console.log(wordInfo);
-            timeBegin = Date.now();
-        };
-
+        counter++;
         conflict = stillConflict;
     }
 
@@ -169,23 +170,17 @@ export function wordPlacement(wordList, size){
 
 
 const size = 5;
-const wordList = ['cat', 'dog', 'tall'];
+const wordList = ['cat', 'dog', 'mice'];
 const wordInfo = wordPlacement(wordList, size)
 
 
 export function puzzleGeneration(wordInfo, size){
     const gridWithWord = gridCreator(size);
-
     for (let i = 0; i < wordInfo.length; i++) {
-        console.log(wordInfo[i].word)
-        console.log(wordInfo[i].direction)
-        console.log(wordInfo[i].position)
         for (let j = 0; j < wordInfo[i].position.length; j++) {
             gridWithWord[wordInfo[i].position[j].line][wordInfo[i].position[j].column] = wordInfo[i].word[j];
         }
     }
-
-    console.log(gridWithWord);
     return gridWithWord;
 }
 

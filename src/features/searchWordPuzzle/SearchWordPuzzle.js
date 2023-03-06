@@ -6,29 +6,6 @@ export class SearchWordPuzzle extends React.PureComponent{
         this.index = -1;
     };
 
-    /*printSizeZoom(){
-        const style = {size:"landscape", zoom:""};
-        switch(selectSize){
-            case 8:
-                style.zoom = 120;
-                return style;
-            case 12:
-                style.zoom = 110;
-                return style;
-            case 16:
-                style.zoom = 100;
-                return style;
-            case 20:
-                style.zoom = 90;
-                return style;
-            case 24:
-                style.zoom = 75;
-                return style;
-            default:
-                return;
-          }
-    };*/
-
     render(){
     return(
         <div className="PrintSearchWord">

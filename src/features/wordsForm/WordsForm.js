@@ -7,15 +7,12 @@ export function WordsForm({ size }){
 
         // helper function who push the input inside our result array by getting the number of required input and the size of the puzzle.
         const finalInputConstructor = (requiredNum) =>{
-            let unRequiredNum = size - (requiredNum + 1);
+            let unRequiredNum = size - (requiredNum);
             for (let i = 1; i <= requiredNum; i++) {
                 if((i-1)%5 === 0 ){
                     finalInput.push(<br/>)
                 };
                 finalInput.push(<input key={'Req'+i} type="text" id="word" minLength={3} maxLength={size} required/>);
-                /*if(i%5 === 0 && i !== 0){
-                    finalInput.push(` - ${i} words`)
-                };*/
             };
             finalInput.push('*')
             for (let i = 1; i <= unRequiredNum; i++) {
@@ -23,13 +20,7 @@ export function WordsForm({ size }){
                     finalInput.push(<br/>)
                 };
                 finalInput.push(<input key={'UnReq'+(i+requiredNum)} type="text" id="word" minLength={3} maxLength={size}/>);
-                /*if(i%5 === 0){
-                    finalInput.push(` - ${requiredNum+i} words`)
-                };*/
             };
-            /*if((size-1)%5 !== 0){
-                finalInput.push(` - ${size-1} words`)
-            };*/
         };
         // this switch logic will determine the required input needed and call our helper function.
         switch(size){
