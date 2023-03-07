@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
 
 .App{
-    background-color: white;
+    background-color: rgba(140, 73, 58, 1);
 }
 
 header{
@@ -26,7 +26,7 @@ header img{
     margin-bottom: 25px;
     height: 10px;
     width: 97%;
-    background-color: rgba(56, 56, 107, 0.884);
+    background-color: rgba(11, 23, 38, 1);
 }
 
 .Instruction{
@@ -35,8 +35,8 @@ header img{
     margin: auto;
     width: 70%;
     padding: 1px 10px;
-    background-color: rgba(65, 70, 99, 0.438);
-    color: rgb(173, 5, 5);
+    background-color: rgba(11, 23, 38, 1);
+    color: #D97C2B;
     border-radius: 10px;
     font-size: 16px;
     text-align: justify;
@@ -54,7 +54,7 @@ header img{
 
 h2, h3 {
     font-family: 'Sniglet', cursive;
-    color: rgb(65, 70, 99);
+    color: rgba(11, 23, 38, 1);
 }
 
 p{
@@ -81,8 +81,9 @@ form input{
 }
 
 .PrintSearchWord{
+    background-color: white;
     display: block;
-    width: 70%;
+    width: 82%;
     margin: auto;
     min-height: 700px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -125,13 +126,45 @@ table{
     
 }
 
-.PrintButton{
+.Button{
     display: block;
-    width: 70%;
+    width: 100%;
     height: 30px;
-    margin: 70px auto;
     font-size: 18px;
     font-family: 'Sniglet', cursive;
-    color: rgb(65, 70, 99);
+    color: rgba(11, 23, 38, 1);
+    background-color:rgba(216, 124, 43, 1);
+    border: solid 1px rgba(11, 23, 38, 1);
     border-radius: 5px;
+    cursor: pointer;
 }
+
+.Button:hover, .Button:focus{
+    background-color:rgba(216, 113, 54, 1);
+    border: solid 2px rgba(11, 23, 38, 1);
+}
+
+.Button:active{
+    background-color:rgba(140, 73, 58, 1)
+}
+
+/* Color Theme Swatches in Hex */
+.Mode-1-hex { color: #0C1726; }
+.Mode-2-hex { color: #D97C2B; }
+.Mode-3-hex { color: #D97236; }
+.Mode-4-hex { color: #8C4A3B; }
+.Mode-5-hex { color: #F22222; }
+
+/* Color Theme Swatches in RGBA */
+.Mode-1-rgba { color: rgba(11, 23, 38, 1); }
+.Mode-2-rgba { color: rgba(216, 124, 43, 1); }
+.Mode-3-rgba { color: rgba(216, 113, 54, 1); }
+.Mode-4-rgba { color: rgba(140, 73, 58, 1); }
+.Mode-5-rgba { color: rgba(242, 33, 33, 1); }
+
+/* Color Theme Swatches in HSLA */
+.Mode-1-hsla { color: hsla(213, 52, 9, 1); }
+.Mode-2-hsla { color: hsla(28, 69, 51, 1); }
+.Mode-3-hsla { color: hsla(22, 68, 53, 1); }
+.Mode-4-hsla { color: hsla(11, 40, 39, 1); }
+.Mode-5-hsla { color: hsla(0, 89, 54, 1); }

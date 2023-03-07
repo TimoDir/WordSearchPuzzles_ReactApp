@@ -12,14 +12,14 @@ export function WordsForm({ size }){
                 if((i-1)%5 === 0 ){
                     finalInput.push(<br/>)
                 };
-                finalInput.push(<input key={'Req'+i} type="text" id="word" minLength={3} maxLength={size} required/>);
+                finalInput.push(<input key={'Req'+i} type="text" id="word" minLength={3} maxLength={size-1} required/>);
             };
             finalInput.push('*')
             for (let i = 1; i <= unRequiredNum; i++) {
                 if(i === 1 || (i-1)%5 === 0){
                     finalInput.push(<br/>)
                 };
-                finalInput.push(<input key={'UnReq'+(i+requiredNum)} type="text" id="word" minLength={3} maxLength={size}/>);
+                finalInput.push(<input key={'UnReq'+(i+requiredNum)} type="text" id="word" minLength={3} maxLength={size-1}/>);
             };
         };
         // this switch logic will determine the required input needed and call our helper function.
@@ -47,10 +47,10 @@ export function WordsForm({ size }){
             case 8:
             case 12:
             case 16:
-                return (`5* - ${size-1} words.`);
+                return (`5* - ${size} words.`);
             case 20:
             case 24:
-                return (`10* - ${size-1} words.`);
+                return (`10* - ${size} words.`);
             default:
                 throw new Error("something went wrong with the state of size.");
         }
@@ -62,7 +62,7 @@ export function WordsForm({ size }){
             <label for="word"><h3>3- Words*</h3></label>
             <p>
                 <br/>For your puzzle size {size}*{size} we recommande beetween {remcomandation(size)}
-                <br/>Your words must be {size} letters or fewer. Any special characters or spaces will be removed.
+                <br/>Your words must be {size-1} letters or fewer. Any special characters or spaces will be removed.
             </p>
             {requiredWord(size)}
         </div>

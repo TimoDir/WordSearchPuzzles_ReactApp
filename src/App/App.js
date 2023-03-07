@@ -57,19 +57,18 @@ function App(props) {
       {/* Header + instruction */}
       <header>
         <img src={SearchWordLogo} alt='SearchWords Generator'/>
+
         <div className='HeaderLine'></div>
       </header>
       <div className='Formular'>
         <div className='Instruction'>
           <h4>Instructions :</h4>
           <ul>
-            <li>All required information is noted by an <span>*</span></li>
-            <li>Our recommended size is a 16 by 16 grid.</li>
-            <li>When you add words, spécial character and space will be remove after generation of the puzzle.</li>
-            <li>The length of your word depend of the size of your puzzle.</li>
-            <li>When you complet the formular clic the generate button to create your puzzle.</li>
-            <li>You can regenerate the puzzle by clicking to generate button again.</li>
-            <li>You can Print your search word puzzle by clicking the print button.</li>
+            <li>All the necessary information is indicated by an *</li>
+            <li>We recommend that you use a 16X16 grid</li>
+            <li>When you add words, special characters and spaces will be removed upon puzzle generation</li>
+            <li>When you complete the form, click Generate to create your puzzle</li>
+            <li>You can print your search word puzzle by clicking Print</li>
           </ul>
           <p>Happy Puzzling!</p>
         </div>
@@ -92,7 +91,7 @@ function App(props) {
           <WordsForm size={selectSize} />
         
           <br/>
-          <input type="submit" value="Generate" />
+          <input className='Button' type="submit" value="Generate" />
           <p>
             If you want a different layout, click on the Generate button again.
           </p>
@@ -102,7 +101,9 @@ function App(props) {
       {/* Puzzle */}
       <SearchWordPuzzle ref={componentRef} searchWord={selectSearchWord} title={selectTitle} size={selectSize}/>
       {selectSearchWord.wordInfo.length > 1 &&
-      <button className='PrintButton' onClick={handlePrint}>Print</button>
+      (<div className='Formular'>
+        <button className='Button' onClick={handlePrint}>Print</button>
+      </div>)
       }
       
     </div>
