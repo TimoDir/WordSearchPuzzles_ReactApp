@@ -1,5 +1,6 @@
 import React from "react";
 
+// For this component I utilise class component for the use of react-to-print to have a stable reference.
 export class SearchWordPuzzle extends React.PureComponent{
     constructor(){
         super();
