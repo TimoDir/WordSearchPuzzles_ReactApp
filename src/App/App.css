@@ -379,5 +379,10 @@ table{
     width: 30px;
     height: 30px;
     border: 1px solid gray;
-    
+}
+
+@media screen and (max-width: 750px) {
+    .PrintSearchWord{
+        zoom: 50%
+    }
 }
