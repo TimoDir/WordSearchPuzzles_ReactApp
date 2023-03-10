@@ -1,7 +1,7 @@
 {
   "name": "crossword_generator",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
@@ -13,6 +13,7 @@
     "react-scripts": "5.0.1",
     "react-to-print": "^2.14.12",
     "redux": "^4.2.1",
+    "sourcemap-codec": "^1.4.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -40,6 +41,7 @@
     ]
   },
   "devDependencies": {
-    "@jest/globals": "^29.4.3"
+    "@jest/globals": "^29.4.3",
+    "@rollup/plugin-terser": "^0.4.0"
   }
 }
