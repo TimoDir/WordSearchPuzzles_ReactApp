@@ -45,7 +45,7 @@ function App(props) {
 
   React.useEffect(()=>{
     handlePuzzleGenerate();
-  }, [selectWordInfo, handlePuzzleGenerate]);
+  }, [selectWordInfo]);
 
   // Handeling the interactivity
   ////////////////////////////////////////
