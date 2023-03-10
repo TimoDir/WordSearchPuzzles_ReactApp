@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './App.css';
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -44,7 +45,7 @@ function App(props) {
 
   React.useEffect(()=>{
     handlePuzzleGenerate();
-  }, [selectWordInfo]);
+  }, [selectWordInfo, handlePuzzleGenerate]);
 
   // Handeling the interactivity
   ////////////////////////////////////////
