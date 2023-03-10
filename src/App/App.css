@@ -74,7 +74,7 @@ header img{
 header button{
     border: solid 0px;
     background-color: var(--main-bg-color);
-    width: 8%;
+    width: 80px;
     margin-right: 5%;
 }
 
@@ -152,7 +152,7 @@ header button svg{
     }
 
     header button{
-        width: 13%;
+        width: 40px;
     }
 
     .HeaderLine{
@@ -180,6 +180,10 @@ form input{
     height: 30px;
     margin: auto;
     font-size: 18px;
+}
+
+.inputWords div{
+    width: 100%;
 }
 
 .inputWords input{

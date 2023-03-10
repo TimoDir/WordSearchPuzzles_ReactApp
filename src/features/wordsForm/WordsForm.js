@@ -15,14 +15,13 @@ export function WordsForm({ size }){
     var Inputs = HandelingInput();
 
     // Handle that manage the resizing of the window
-    const handleResize = () =>{
-        console.log(window.matchMedia('screen and (max-width: 750px)').matches);
+    const handleResize = (e) =>{
         screenSize = window.matchMedia('screen and (max-width: 750px)').matches;
         Inputs = HandelingInput();
     };
     
-    // The addEventListener with the parameter "resize" will triger the handeling to adjust the inupts depending of the new size of the Window
-    window.addEventListener("resize", handleResize);
+    // The addEventListener with the parameter "resize" will triger the handeling to adjust the inupts depending of the new size of the Win
+    window.addEventListener("resize", handleResize());
 
     const remcomandation = (size) =>{
         // the switch logic will render an interactive sentence influenced by the size of the puzzle
@@ -47,9 +46,7 @@ export function WordsForm({ size }){
                 <br/>For your puzzle size {size}*{size} we recommande beetween {remcomandation(size)}
                 <br/>Your words must be {size-1} letters or fewer. Any special characters or spaces will be removed.
             </p>
-            <div style={{display:"block",}} className="CheckScreenSize"></div>
-            {Inputs}
-            
+            <div onResize={handleResize}>{Inputs}</div>           
         </div>
         <br/>
         </>
