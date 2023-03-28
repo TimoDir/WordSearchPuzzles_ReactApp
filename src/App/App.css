@@ -144,6 +144,10 @@ header button svg{
 }
 
 .Instruction button{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
     color: var(--tiercary-color);
     background-color: var(--main-bg-color);
     font-size: 20px;
