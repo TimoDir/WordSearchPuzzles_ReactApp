@@ -96,9 +96,8 @@ function App(props) {
 
           <label for="title"><h3>1- Title</h3></label>
           <input type="text" id="title" />
-          
           <label for="size"><h3>2- Size</h3></label>
-          <p>Size : {selectSize}*{selectSize}</p>
+          <p>Size : {selectSize}x{selectSize}</p>
           <input className='Range' type="range"  id="size" min="8" max="24" step="4" list='length' onChange={handleChange}/>
           <datalist id='length'>
             <option value="8" label='8'></option>

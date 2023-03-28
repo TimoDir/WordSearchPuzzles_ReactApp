@@ -21,7 +21,11 @@ export function WordsForm({ size }){
     };
     // Event Listener who triger our function while resizing the window
     window.addEventListener('resize', handleResize);
-
+    // Updating the input display depending when the size change using useEffect
+    React.useEffect(() => {
+        handleResize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [size])
 
     // Handeling the WordForm display of input word 
     ////////////////////////////////////////
@@ -40,13 +44,13 @@ export function WordsForm({ size }){
         }
     }
 
-    
+
     return (
         <>
         <div className="inputWords">
             <label for="word"><h3>3- Words*</h3></label>
             <p>
-                <br/>For your puzzle size {size}*{size} we recommande beetween {remcomandation(size)}
+                <br/>For your puzzle size {size}x{size} we recommande beetween {remcomandation(size)}
                 <br/>Your words must be {size-1} letters or fewer. Any special characters or spaces will be removed.
             </p>
             <div>{inputWord}</div>           
