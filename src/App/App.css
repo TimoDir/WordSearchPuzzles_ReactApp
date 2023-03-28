@@ -112,7 +112,6 @@ header button svg{
 }
 
 .Instruction{
-    display: none;
     position: fixed;
     font-family: var(--main-font-family);
     margin: auto;
@@ -124,6 +123,19 @@ header button svg{
     text-align: justify;
     align-content: center;
     z-index: 2;
+}
+
+@media screen and (max-width: 400px){
+    .Instruction ul{
+        font-size: calc(var(--main-font-size)*0.9);
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .Instruction h4{
+        margin: 10px;
+        padding: 0;
+    }
 }
 
 .Instruction h4{
@@ -291,7 +303,7 @@ input[type="range"] {
   /* Display custom datalist */
  datalist {
     width: 100%;
-    margin: auto 15%;
+    margin: auto;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -299,6 +311,9 @@ input[type="range"] {
 }
 
 datalist option {
+    display: flex;
+    justify-content: center;
+    padding: 0 1% 0 0;
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
         -ms-flex-positive: 1;

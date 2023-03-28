@@ -1,28 +1,30 @@
+import * as React from "react";
 import { InputComputerScreen, InputPhoneScreen} from "./Inputs/Inputs";
 
 export function WordsForm({ size }){
-    // check at the size (width) at the screen if more than 750px return false
-    var screenSize = window.matchMedia('screen and (max-width: 750px)').matches;
-
-    const HandelingInput = () =>{
-        // depending of the size we display the phone or computer input. 
+    // Handeling the WordForm display of input word 
+    ////////////////////////////////////////
+    // looking at the current size of the window to select the initial state
+    const initialInputWordState = window.matchMedia('(max-width: 750px)').matches ? <InputPhoneScreen size={size} /> : <InputComputerScreen size={size} />;
+    // creation of the state
+    const [inputWord, setInputWord] = React.useState(initialInputWordState);
+    // depending of the size of the window we display the phone or computer input. 
+    const HandelingInput = (screenSize) =>{
         if(screenSize){
-            return <InputPhoneScreen size={size} />;
-        } else return <InputComputerScreen size={size} />
+        return setInputWord(<InputPhoneScreen size={size} />);
+        } else return setInputWord(<InputComputerScreen size={size} />);
     };
-    
-    // return the inputs depending of the defaults size of the screen
-    var Inputs = HandelingInput();
-
-    // Handle that manage the resizing of the window
-    const handleResize = (e) =>{
-        screenSize = window.matchMedia('screen and (max-width: 750px)').matches;
-        Inputs = HandelingInput();
+    // Handle that manage the state with the resizing of the window
+    const handleResize = () =>{
+        let screenSize = window.matchMedia('(max-width: 750px)').matches;
+        return HandelingInput(screenSize);
     };
-    
-    // The addEventListener with the parameter "resize" will triger the handeling to adjust the inupts depending of the new size of the Win
-    window.addEventListener("resize", handleResize());
+    // Event Listener who triger our function while resizing the window
+    window.addEventListener('resize', handleResize);
 
+
+    // Handeling the WordForm display of input word 
+    ////////////////////////////////////////
     const remcomandation = (size) =>{
         // the switch logic will render an interactive sentence influenced by the size of the puzzle
         switch(size){
@@ -38,6 +40,7 @@ export function WordsForm({ size }){
         }
     }
 
+    
     return (
         <>
         <div className="inputWords">
@@ -46,7 +49,7 @@ export function WordsForm({ size }){
                 <br/>For your puzzle size {size}*{size} we recommande beetween {remcomandation(size)}
                 <br/>Your words must be {size-1} letters or fewer. Any special characters or spaces will be removed.
             </p>
-            <div onResize={handleResize}>{Inputs}</div>           
+            <div>{inputWord}</div>           
         </div>
         <br/>
         </>

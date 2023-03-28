@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, } from '@testing-library/react';
 import App from './App';
 
-describe('Test our app', ()=>{
-  test('render an image with our logo', ()=>{
-    
+describe('MainSection Component', () => {
+  test('render', () => {
+    const { wrapper } = setup()
+    expect(wrapper).toMatchSnapshot()
   })
-})
+});

@@ -6,14 +6,13 @@ import {useReactToPrint} from 'react-to-print';
 import { WordsForm } from '../features/wordsForm/WordsForm';
 import { SearchWordPuzzle } from '../features/searchWordPuzzle/SearchWordPuzzle';
 import { action } from './store';
-import SearchWordLogo from '../img/SearchWordLogo.png'
+import SearchWordLogo from '../img/SearchWordLogo.png';
 
 
 function App(props) {
 
   // State querry & handeling
   ////////////////////////////////////////
-
   const selectTitle = useSelector(state => state.title);
   const selectSize = useSelector(state => state.size);
   const selectWordInfo = useSelector(state => state.searchWord.wordInfo)
@@ -49,13 +48,12 @@ function App(props) {
 
   // Handeling the interactivity
   ////////////////////////////////////////
+  const [display, setDisplay] = React.useState('none')
   const displayInstruction = () =>{
-    const querryInstruction = document.body.querySelector(".Instruction");
-    if(querryInstruction.style.display === "none"){
-      document.body.querySelector(".Instruction").style.display = "block";
-    } else document.body.querySelector(".Instruction").style.display = "none";
+    if(display === "none"){
+      return setDisplay("block");
+    } else return setDisplay("none");
   };
-
 
   // Handeling the printing component SearchWordPuzzle with React-to-Print
   ////////////////////////////////////////
@@ -80,7 +78,7 @@ function App(props) {
         <div className='HeaderLine'></div>
       </header>
       <div className='Formular'>
-        <div className='Instruction'>
+        <div className='Instruction' style={{display : display}} >
           <button onClick={displayInstruction}>X</button>
           <h4>Instructions :</h4>
           <ul>
